@@ -1,9 +1,11 @@
 (load "aoc.lisp")
 (ql:quickload :cl-ppcre)
+(ql:quickload :alexandria)
+(ql:quickload :iterate)
 
 (defpackage :aoc2018.day4
   (:use :common-lisp :aoc
-        :cl-ppcre))
+        :cl-ppcre :alexandria :iterate))
 
 (in-package :aoc2018.day4)
 
@@ -36,17 +38,11 @@
 (defun get-action (record) (getf record :action))
 (defun get-guard (record) (getf record :guard))
 
+(defun guardp (record) (get-guard record))
 
 (defun compare-time (x y)
-  ;;; return true if s < t
-  (labels ((tiebreak-compare (x y)
-             (if (not x) nil
-                 (let ((a (first x))
-                       (b (first y)))
-                   (cond ((< a b) t)
-                         ((> a b) nil)
-                         (t (tiebreak-compare (rest x) (rest y))))))))
-    (tiebreak-compare x y)))
+  (tiebreak-compare x y))
+
 
 
 (defparameter *records*
@@ -54,3 +50,41 @@
         #'compare-time :key #'get-time))
 
 
+
+;;; ==== Part 1 =====
+
+(defun partition-records (records)
+  (let ((groups '())
+        (current-group '()))
+    (iter (for record in records)
+          (if (guardp record)
+              (progn
+                (push (reverse current-group) groups)
+                (setf current-group (list record)))
+              (push record current-group)))
+
+    (push (reverse current-group) groups)
+    (nreverse groups)))
+
+
+(defun normalize-start-time (record)
+  (let* ((time (get-time record))
+         (month)
+         (hour ())
+         )
+
+    ()
+    )
+
+
+
+  )
+
+
+
+(loop for x in '(1 2 3 4)
+      if (evenp x) do (progn (format t "Even number: ") (format t "~a~%" x)))
+
+
+(iter (for x in '(1 2 3 4))
+      (collect x))
