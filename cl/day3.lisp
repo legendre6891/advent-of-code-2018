@@ -1,14 +1,12 @@
+(load "aoc.lisp")
+
 (defpackage :aoc2018.day3
-  (:use :common-lisp))
+  (:use :common-lisp
+        :aoc))
 (in-package :aoc2018.day3)
 
 
-(defvar *input*
-  (let ((in (open "../inputs/day3.txt" :if-does-not-exist nil)))
-    (when in
-      (loop for line = (read-line in nil)
-            while line collect line
-            finally (close in)))))
+(defparameter *input* (read-input 3))
 
 (defparameter *grid*
   (make-array '(1000 1000)
@@ -86,7 +84,6 @@
    (loop for patch in patches
          if (non-overlap-among patches patch) return patch)))
 
-
-
 (format t "Day 3, Part 2: ~A~%" (part-two *patches*))
+
 
