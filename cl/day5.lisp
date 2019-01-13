@@ -1,10 +1,6 @@
-(load "aoc.lisp")
+(load "setup.lisp")
 
-(defpackage :aoc2018.day5
-  (:use :common-lisp :aoc :iter
-        :alexandria))
-
-(in-package :aoc2018.day5)
+(aoc-package 5)
 
 
 (defparameter *input* (first (read-input 5)))

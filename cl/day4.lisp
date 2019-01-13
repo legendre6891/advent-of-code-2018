@@ -1,10 +1,6 @@
-(load "aoc.lisp")
+(load "setup.lisp")
 
-(defpackage :aoc2018.day4
-  (:use :common-lisp :aoc
-        :cl-ppcre :alexandria :iterate :group-by))
-
-(in-package :aoc2018.day4)
+(aoc-package 4)
 
 (defparameter *input* (read-input 4))
 
@@ -36,6 +32,19 @@
 (defun get-guard (record) (getf record :guard))
 
 (defun guardp (record) (get-guard record))
+
+
+(defun tiebreak-compare (x y)
+  (when (not (eql (length x) (length y)))
+    (error (format nil "X and Y of unequal lengths.")))
+  (labels ((f (x y)
+             (if (not x) nil
+                 (let ((a (first x))
+                       (b (first y)))
+                   (cond ((< a b) t)
+                         ((> a b) nil)
+                         (t (tiebreak-compare (rest x) (rest y))))))))
+    (f x y)))
 
 (defun compare-time (x y)
   (tiebreak-compare x y))
