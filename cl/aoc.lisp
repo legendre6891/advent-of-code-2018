@@ -1,4 +1,10 @@
-(ql:quickload :metabang-bind)
+(load "~/.sbclrc")
+
+(ql:quickload :metabang-bind :silent t)
+(ql:quickload :cl-ppcre :silent t)
+(ql:quickload :alexandria :silent t)
+(ql:quickload :iterate :silent t)
+(ql:quickload :group-by :silent t)
 
 
 (defpackage :aoc
