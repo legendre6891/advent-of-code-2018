@@ -96,7 +96,7 @@
                (if (eql (third time) 0)
                    (fourth time)
                    0))))
-    (map 'list #'shift partition)))
+    (cl:map 'list #'shift partition)))
 
 (defun summarize (partition)
   (let ((timesheet (minutes-working (get-shifts partition))))

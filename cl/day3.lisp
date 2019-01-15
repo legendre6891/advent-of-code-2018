@@ -26,7 +26,7 @@
 
 (defun get-id (patch) (first patch))
 
-(defvar *patches* (map 'list #'parse-description *input*))
+(defvar *patches* (cl:map 'list #'parse-description *input*))
 
 
 
