@@ -10,6 +10,7 @@
 (ql:quickload :incf-cl :silent t)
 (ql:quickload :fset :silent t)
 (ql:quickload :trivia :silent t)
+(ql:quickload :recur :silent t)
 
 (setf trivia.level2:*arity-check-by-test-call* nil)
 
@@ -23,7 +24,7 @@
          (:use :common-lisp :aoc
                :cl-ppcre :alexandria :iterate :group-by
                :cl-arrows :fset :gmap
-               :new-let :lexical-contexts)
+               :new-let :lexical-contexts :recur)
          (:shadowing-import-from :trivia #:match)
          (:shadowing-import-from :new-let #:let #:cond)
          (:shadowing-import-from :alexandria :removef)
